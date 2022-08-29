@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3D-Graphics-Engine", "3D-Graphics-Engine\3D-Graphics-Engine.vcxproj", "{FCAA4FD7-8987-49FD-BA78-D2017223E0FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCAA4FD7-8987-49FD-BA78-D2017223E0FF}.Debug|x64.ActiveCfg = Debug|x64
+		{FCAA4FD7-8987-49FD-BA78-D2017223E0FF}.Debug|x64.Build.0 = Debug|x64
+		{FCAA4FD7-8987-49FD-BA78-D2017223E0FF}.Debug|x86.ActiveCfg = Debug|Win32
+		{FCAA4FD7-8987-49FD-BA78-D2017223E0FF}.Debug|x86.Build.0 = Debug|Win32
+		{FCAA4FD7-8987-49FD-BA78-D2017223E0FF}.Release|x64.ActiveCfg = Release|x64
+		{FCAA4FD7-8987-49FD-BA78-D2017223E0FF}.Release|x64.Build.0 = Release|x64
+		{FCAA4FD7-8987-49FD-BA78-D2017223E0FF}.Release|x86.ActiveCfg = Release|Win32
+		{FCAA4FD7-8987-49FD-BA78-D2017223E0FF}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16D2393C-685A-4FF2-BD21-BA501F55D693}
+	EndGlobalSection
+EndGlobal
