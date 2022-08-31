@@ -5,6 +5,7 @@ void*  sgl::screen::buffer_memory;
 int sgl::screen::width;
 int sgl::screen::height;
 BITMAPINFO sgl::screen::buffer_bitmap_info;
+HDC sgl::screen::hdc;
 
 LRESULT sgl::screen::WindowProc(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam) {
     switch (Message) {
@@ -30,7 +31,7 @@ LRESULT sgl::screen::WindowProc(HWND Window, UINT Message, WPARAM WParam, LPARAM
     return 0;
 }
 
-void sgl::screen::clear_screen(unsigned int color) {
+void sgl::screen::clear(unsigned int color) {
     unsigned int* pixel = (unsigned int*)sgl::screen::buffer_memory;
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
@@ -39,6 +40,32 @@ void sgl::screen::clear_screen(unsigned int color) {
     }
 }
 
-void sgl::screen::draw(HDC& hdc) {
+void sgl::screen::draw() {
 	StretchDIBits(hdc, 0, 0, width, height, 0, 0, width, height, buffer_memory, &buffer_bitmap_info, DIB_RGB_COLORS, SRCCOPY);
 }
+
+int sgl::screen::init(HINSTANCE &Instance) {
+    WNDCLASS WindowClass = {};
+    const wchar_t ClassName[] = L"MyWindowClass";
+    WindowClass.lpfnWndProc = sgl::screen::WindowProc;
+    WindowClass.hInstance = Instance;
+    WindowClass.lpszClassName = ClassName;
+
+    if (!RegisterClass(&WindowClass)) {
+        MessageBox(0, L"RegisterClass failed", 0, 0);
+        return GetLastError();
+    }
+
+    HWND Window = CreateWindowEx(0, ClassName, L"Program",
+        WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+        CW_USEDEFAULT, CW_USEDEFAULT,
+        CW_USEDEFAULT, CW_USEDEFAULT,
+        0, 0, Instance, 0);
+    
+    if (!Window) {
+        MessageBox(0, L"CreateWindowEx failed", 0, 0);
+        return GetLastError();
+    }
+    hdc = GetDC(Window);
+    
+};

@@ -7,9 +7,10 @@ namespace sgl{
 		extern int height;
 		extern BITMAPINFO buffer_bitmap_info;
 		extern void* buffer_memory;
+		extern HDC hdc;
 		LRESULT CALLBACK WindowProc(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam);
-		void draw(HDC& hdc);
-		void clear_screen(unsigned int color);
+		void draw();
+		void clear(unsigned int color);
+		int init(HINSTANCE& Instance);
 	}
-	
 };
