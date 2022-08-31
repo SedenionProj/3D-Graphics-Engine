@@ -1,0 +1,44 @@
+#include "screen.h"
+
+void*  sgl::screen::buffer_memory;
+
+int sgl::screen::width;
+int sgl::screen::height;
+BITMAPINFO sgl::screen::buffer_bitmap_info;
+
+LRESULT sgl::screen::WindowProc(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam) {
+    switch (Message) {
+    case WM_DESTROY: { PostQuitMessage(0); } break;
+    case WM_SIZE: {
+        RECT rect;
+        GetClientRect(Window, &rect);
+        width = rect.right - rect.left;
+        height = rect.bottom - rect.top;
+
+        int buffer_size = width * height * sizeof(unsigned int);
+        if (sgl::screen::buffer_memory) VirtualFree(sgl::screen::buffer_memory, 0, MEM_RELEASE);
+        sgl::screen::buffer_memory = VirtualAlloc(0, buffer_size, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+        buffer_bitmap_info.bmiHeader.biSize = sizeof(buffer_bitmap_info.bmiHeader);
+        buffer_bitmap_info.bmiHeader.biWidth = width;
+        buffer_bitmap_info.bmiHeader.biHeight = height;
+        buffer_bitmap_info.bmiHeader.biPlanes = 1;
+        buffer_bitmap_info.bmiHeader.biBitCount = 32;
+        buffer_bitmap_info.bmiHeader.biCompression = BI_RGB;
+    }
+    default: { return DefWindowProc(Window, Message, WParam, LParam); }
+    }
+    return 0;
+}
+
+void sgl::screen::clear_screen(unsigned int color) {
+    unsigned int* pixel = (unsigned int*)sgl::screen::buffer_memory;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            *pixel++ = color;
+        }
+    }
+}
+
+void sgl::screen::draw(HDC& hdc) {
+	StretchDIBits(hdc, 0, 0, width, height, 0, 0, width, height, buffer_memory, &buffer_bitmap_info, DIB_RGB_COLORS, SRCCOPY);
+}
