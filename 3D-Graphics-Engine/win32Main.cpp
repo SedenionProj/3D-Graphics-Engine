@@ -5,15 +5,7 @@ int WINAPI wWinMain(HINSTANCE Instance, HINSTANCE PrevInstance, PWSTR CmdLine, i
     
     sgl::screen::init(Instance);
     
-    float dt = 0.166666f;
-    LARGE_INTEGER frame_begin;
-    QueryPerformanceCounter(&frame_begin);
-    float performance_frequency;
-    {
-        LARGE_INTEGER perf;
-        QueryPerformanceFrequency(&perf);
-        performance_frequency = (float)perf.QuadPart;
-    }
+    
 
     bool Running = true;
     while (Running) {
@@ -29,12 +21,6 @@ int WINAPI wWinMain(HINSTANCE Instance, HINSTANCE PrevInstance, PWSTR CmdLine, i
         }
 
         sgl::screen::draw();
-        
-        LARGE_INTEGER frame_end;
-        QueryPerformanceCounter(&frame_end);
-        dt = (float)(frame_end.QuadPart - frame_begin.QuadPart)/ performance_frequency;
-        frame_begin = frame_end;
-        
     }
 
     return 0;

@@ -1,4 +1,5 @@
 #include "screen.h"
+#include "timeStep.h"
 
 void*  sgl::screen::buffer_memory;
 
@@ -42,6 +43,7 @@ void sgl::screen::clear(unsigned int color) {
 
 void sgl::screen::draw() {
 	StretchDIBits(hdc, 0, 0, width, height, 0, 0, width, height, buffer_memory, &buffer_bitmap_info, DIB_RGB_COLORS, SRCCOPY);
+    time_update();
 }
 
 int sgl::screen::init(HINSTANCE &Instance) {
@@ -67,5 +69,5 @@ int sgl::screen::init(HINSTANCE &Instance) {
         return GetLastError();
     }
     hdc = GetDC(Window);
-    
+    time_begin();
 };
