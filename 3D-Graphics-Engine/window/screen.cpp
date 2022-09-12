@@ -2,11 +2,12 @@
 #include "timeStep.h"
 
 void*  sgl::screen::buffer_memory;
-
 int sgl::screen::width;
 int sgl::screen::height;
 BITMAPINFO sgl::screen::buffer_bitmap_info;
 HDC sgl::screen::hdc;
+MSG sgl::screen::Message;
+bool sgl::screen::running;
 
 LRESULT sgl::screen::WindowProc(HWND Window, UINT Message, WPARAM WParam, LPARAM LParam) {
     switch (Message) {
@@ -70,4 +71,15 @@ int sgl::screen::init(HINSTANCE &Instance) {
     }
     hdc = GetDC(Window);
     time_begin();
+    running = true;
+};
+
+void sgl::screen::msg() {
+    while (PeekMessage(&Message, nullptr, 0, 0, PM_REMOVE)) {
+        switch (Message.message) {
+        case WM_QUIT: {running = false; }
+        }
+        TranslateMessage(&Message);
+        DispatchMessage(&Message);
+    }
 };

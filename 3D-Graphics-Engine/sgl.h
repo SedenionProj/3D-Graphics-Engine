@@ -1,4 +1,5 @@
 #pragma once
 #include <windows.h>
-#include "declaration.h"
-#include "screen.h"
+#include "utils/sglMath.h"
+#include "core/declaration.h"
+#include "window/screen.h"

@@ -19,20 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="screen.cpp" />
-    <ClCompile Include="declaration.h">
+    <ClCompile Include="window\screen.cpp" />
+    <ClCompile Include="core\declaration.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="timeStep.cpp" />
-    <ClCompile Include="timeStep.h" />
-    <ClCompile Include="win32Main.cpp" />
+    <ClCompile Include="window\timeStep.cpp" />
+    <ClCompile Include="window\timeStep.h" />
+    <ClCompile Include="core\win32Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="renderer\clearScreen.h" />
     <ClInclude Include="sgl.h" />
-    <ClInclude Include="screen.h" />
+    <ClInclude Include="utils\sglMath.cpp" />
+    <ClInclude Include="utils\sglMath.h" />
+    <ClInclude Include="window\screen.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
