@@ -1,6 +1,4 @@
-#pragma once
 #include "sglMath.h"
-
 
 int sgl::mini(const int x, const int y, const int z) {
 	return x < y ? (x < z ? x : z) : (y < z ? y : z);
@@ -23,31 +21,6 @@ sgl::Vec3f sgl::MultMatVec(Vec3f& i, mat4& m) {
 void sgl::normalize(Vec3f& i) {
 	float l = sqrt(i.x * i.x + i.y * i.y + i.z * i.z);
 	i.x /= l; i.y /= l; i.z /= l;
-}
-
-sgl::mat4 sgl::MatProjection(float fov, float AspectRatio, float fNear, float fFar)
-{
-	return mat4();
-}
-
-sgl::mat4 sgl::MatRotationX(float& angle)
-{
-	return mat4();
-}
-
-sgl::mat4 sgl::MatRotationY(float angle)
-{
-	return mat4();
-}
-
-sgl::mat4 sgl::MultMat(mat4& a, mat4& b)
-{
-	return mat4();
-}
-
-sgl::mat4 sgl::Mat_MakeIdentity()
-{
-	return mat4();
 }
 
 sgl::mat4 sgl::MatProjection(float fov, float AspectRatio, float fNear, float fFar) {

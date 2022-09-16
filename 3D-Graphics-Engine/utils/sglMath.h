@@ -58,5 +58,4 @@ namespace sgl {
 	mat4 lookAt(Vec3f& from, Vec3f& to, Vec3f& vup);
 
 	mat4 MatInv(mat4& m);
-
 }

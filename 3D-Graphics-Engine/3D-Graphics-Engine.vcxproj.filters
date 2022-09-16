@@ -6,12 +6,14 @@
     <ClCompile Include="window\screen.cpp" />
     <ClCompile Include="window\timeStep.h" />
     <ClCompile Include="window\timeStep.cpp" />
+    <ClCompile Include="utils\sglMath.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window\screen.h" />
     <ClInclude Include="sgl.h" />
-    <ClInclude Include="utils\sglMath.cpp" />
     <ClInclude Include="renderer\clearScreen.h" />
     <ClInclude Include="utils\sglMath.h" />
+    <ClInclude Include="core\sglObj.h" />
   </ItemGroup>
 </Project>
