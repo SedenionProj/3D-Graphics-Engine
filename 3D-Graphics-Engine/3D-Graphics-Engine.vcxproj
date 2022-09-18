@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="utils\sglMath.cpp" />
+    <ClCompile Include="renderer\raster\draw.cpp" />
     <ClCompile Include="window\screen.cpp" />
     <ClCompile Include="core\declaration.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -35,8 +35,14 @@
   <ItemGroup>
     <ClInclude Include="core\sglObj.h" />
     <ClInclude Include="renderer\clearScreen.h" />
+    <ClInclude Include="renderer\raster\draw.h" />
     <ClInclude Include="sgl.h" />
-    <ClInclude Include="utils\sglMath.h" />
+    <ClInclude Include="utils\sglMath.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="window\screen.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
