@@ -25,7 +25,7 @@ sgl::Triangle t1 = {
 
 sgl::Vec2i transform(sgl::Vec3f vertices) {
 	projection = sgl::MatProjection(90, (float)sgl::screen::height / (float)sgl::screen::width, 0.1f, 1000.0f);
-	sgl::Vec3f proj = MultMatVec(vertices, MultMat(MatInv(lookAt(cameraPos, addVec(up, lookDir), up)), projection));
+	sgl::Vec3f proj = vertices * MatInv(lookAt(cameraPos, up + lookDir, up)) * projection;
 	sgl::Vec2i v;
 	v.x = (int)((proj.x + 1) * 0.5f * (float)sgl::screen::width);
 	v.y = (int)((proj.y + 1) * 0.5f * (float)sgl::screen::height);

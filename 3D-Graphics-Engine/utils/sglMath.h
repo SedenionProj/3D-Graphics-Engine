@@ -1,9 +1,8 @@
 #pragma once
-#ifndef SGLMATH
-#define SGLMATH
 #include <math.h>
 
 namespace sgl {
+
 	struct Vec2i {
 		int x, y;
 	};
@@ -19,6 +18,7 @@ namespace sgl {
 	struct Vec3f {
 		float x, y, z;
 	};
+
 
 	struct mat4
 	{
@@ -50,6 +50,10 @@ namespace sgl {
 			o.x /= w; o.y /= w; o.z /= w;
 		}
 		return o;
+	}
+
+	inline Vec3f operator*(const Vec3f& i, const mat4& m) {
+		return MultMatVec(i, m);
 	}
 
 	template<class T>
@@ -102,6 +106,10 @@ namespace sgl {
 		return c;
 	}
 
+	inline mat4 operator*(const mat4& a, const mat4& b) {
+		return MultMat(a, b);
+	}
+
 	inline mat4 Mat_MakeIdentity()
 	{
 		mat4 matrix;
@@ -120,12 +128,24 @@ namespace sgl {
 		return { a.x + b.x, a.y + b.y, a.z + b.z };
 	}
 
+	inline Vec3f operator+(const Vec3f& a, const Vec3f& b) {
+		return addVec(a, b);
+	}
+
 	inline Vec3f subVec(const Vec3f& a, const Vec3f& b) {
 		return { a.x - b.x, a.y - b.y, a.z - b.z };
 	}
 
+	inline Vec3f operator-(const Vec3f& a, const Vec3f& b) {
+		return subVec(a, b);
+	}
+
 	inline Vec3f multVec(const Vec3f& a, const float& k) {
 		return { a.x * k, a.y * k, a.z * k };
+	}
+
+	inline Vec3f operator*(const Vec3f& a, const float& k) {
+		multVec(a, k);
 	}
 
 	inline Vec3f crossProd(const Vec3f& a, const Vec3f& b) {
@@ -170,4 +190,3 @@ namespace sgl {
 	}
 
 }
-#endif
