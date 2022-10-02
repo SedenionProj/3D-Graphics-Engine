@@ -16,6 +16,8 @@ namespace sgl {
 	};
 
 	struct Vec3f {
+		//Vec3f():x(0),y(0),z(0) {}
+		//Vec3f(float a, float b, float c) :x(a), y(b), z(c) {}
 		float x, y, z;
 	};
 
@@ -39,7 +41,7 @@ namespace sgl {
 		return x > y ? (x > z ? x : z) : (y > z ? y : z);
 	}
 
-	inline Vec3f MultMatVec(const Vec3f& i, const mat4& m) {
+	inline Vec3f MultMatVec(const mat4& m, const Vec3f& i) {
 		Vec3f o;
 		o.x = i.x * m.m[0][0] + i.y * m.m[1][0] + i.z * m.m[2][0] + m.m[3][0];
 		o.y = i.x * m.m[0][1] + i.y * m.m[1][1] + i.z * m.m[2][1] + m.m[3][1];
@@ -52,8 +54,8 @@ namespace sgl {
 		return o;
 	}
 
-	inline Vec3f operator*(const Vec3f& i, const mat4& m) {
-		return MultMatVec(i, m);
+	inline Vec3f operator*(const mat4& m, const Vec3f& i ) {
+		return MultMatVec(m, i);
 	}
 
 	template<class T>
@@ -107,7 +109,7 @@ namespace sgl {
 	}
 
 	inline mat4 operator*(const mat4& a, const mat4& b) {
-		return MultMat(a, b);
+		return MultMat(b,a); //wait
 	}
 
 	inline mat4 Mat_MakeIdentity()
@@ -145,7 +147,7 @@ namespace sgl {
 	}
 
 	inline Vec3f operator*(const Vec3f& a, const float& k) {
-		multVec(a, k);
+		return multVec(a, k);
 	}
 
 	inline Vec3f crossProd(const Vec3f& a, const Vec3f& b) {
